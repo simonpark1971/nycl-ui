@@ -1,3 +1,5 @@
 /.idea
 /nycl-ui.iml
 /node_modules
+/selenium-debug.log
+/test/e2e/reports

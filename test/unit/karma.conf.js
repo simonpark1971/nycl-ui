@@ -22,6 +22,7 @@ module.exports = function (config) {
     webpackMiddleware: {
       noInfo: true
     },
+    failOnEmptyTestSuite: false,
     coverageReporter: {
       dir: './coverage',
       reporters: [
