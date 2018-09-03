@@ -84,7 +84,7 @@
       saveOnSubmit: function (event) {
         var self = this
         if (confirm('Please confirm you wish to register ' + this.clubName + ' for the ' + this.season) === true) {
-          axios.post('http://localhost:8081/register',
+            this.$http.post('register',
             {clubName: this.clubName,
               mainContact: this.mainContact},
             { headers: {'Content-Type': 'application/json'} }).then(function () {

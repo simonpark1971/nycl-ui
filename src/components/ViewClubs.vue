@@ -45,7 +45,7 @@
 
     mounted: function () {
       var self = this
-      axios.get('http://localhost:8081/getclubs').then(function (response) {
+        this.$http.get('http://localhost:8081/getclubs').then(function (response) {
         self.clubs = response.data
       })
     },
