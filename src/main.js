@@ -70,11 +70,8 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-const base = axios.create({
-    baseURL: process.env.API_BASE_URL
-})
+axios.defaults.baseURL = process.env.API_BASE_URL
 
-Vue.prototype.$http = base
 
 Vue.use(Vuex)
 const store = new Vuex.Store({
@@ -102,14 +99,14 @@ const store = new Vuex.Store({
 
   actions: {
     login ({commit}, credentials) {
-      return this.$http.post('http://localhost:8081/security/login', {username: credentials.username, password: credentials.password},
+      return axios.post('security/login', {username: credentials.username, password: credentials.password},
         { headers: {'Content-Type': 'application/json'} }).then(function (response) {
           commit('LOGIN_SUCCESS', response.data)
         })
     },
 
     logout ({commit}) {
-      return axios.get('http://localhost:8081/security/logout').then(function (response) {
+      return axios.get('security/logout').then(function (response) {
         commit('LOGOUT')
       })
     }

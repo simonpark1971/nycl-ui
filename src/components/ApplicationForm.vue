@@ -141,7 +141,7 @@
       return {
         saved: false,
         error: false,
-        season: '2018',
+        season: '2019',
         application: {
           club: {
             id: '',
@@ -182,7 +182,7 @@
 
     mounted: function () {
       var self = this
-      axios.get('http://localhost:8081/getclub?clubName=' + this.$store.getters.getClub).then(function (response) {
+      axios.get('getclub?clubName=' + this.$store.getters.getClub).then(function (response) {
         if (!response.data.mainContact) {
           response.data.mainContact = {}
         }
@@ -198,7 +198,7 @@
         var self = this
         this.error = false
         if (confirm('Please confirm you wish to save this application') === true) {
-          axios.post('http://localhost:8081/apply', this.application.club,
+          axios.post('apply', this.application.club,
             {headers: {'Content-Type': 'application/json'}}).then(function () {
               self.saved = true
               window.scrollTo(0, 0)

@@ -68,7 +68,7 @@
     data () {
       return {
         registered: false,
-        season: '2018',
+        season: '2019',
         clubName: '',
         mainContact: {
           contactName: '',
@@ -84,7 +84,7 @@
       saveOnSubmit: function (event) {
         var self = this
         if (confirm('Please confirm you wish to register ' + this.clubName + ' for the ' + this.season) === true) {
-            this.$http.post('register',
+            axios.post('register',
             {clubName: this.clubName,
               mainContact: this.mainContact},
             { headers: {'Content-Type': 'application/json'} }).then(function () {

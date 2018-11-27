@@ -79,7 +79,7 @@
             <p>
               If paying by bank transfer: NYCL, sort code 54-21-47 a/c number 29569222.  It is important to put the Club name as reference.
             </p><p>
-              If paying by cheque, please make out to <u>Nottingham Youth Cricket League</u>, write the club name on the back of the cheque, and send to me at:
+              If paying by cheque, please make out to <u>Nottingham Youth Cricket League</u>, write the club name on the back of the cheque, and send to Andrew Whitaker at:
               <br> 62 Whitby Crescent, Woodthorpe, Nottingham NG5 4LZ.
             </p>
             </strong>
@@ -105,7 +105,7 @@
         error: false,
         saved: false,
         registered: false,
-        season: '2018',
+        season: '2019',
         clubName: '',
         club: ''
       }
@@ -116,7 +116,7 @@
         var self = this
         this.error = false
         if (confirm('Please confirm you wish to complete your application') === true) {
-          axios.post('http://localhost:8081/complete', this.club, {headers: {'Content-Type': 'application/json'}}).then(function () {
+          axios.post('complete', this.club, {headers: {'Content-Type': 'application/json'}}).then(function () {
             self.saved = true
           }).catch(function () {
             self.error = true
@@ -127,7 +127,7 @@
 
     mounted: function () {
       var self = this
-      axios.get('http://localhost:8081/getclub?clubName=' + this.$store.getters.getClub).then(function (response) {
+      axios.get('getclub?clubName=' + this.$store.getters.getClub).then(function (response) {
         self.club = response.data
       })
     },

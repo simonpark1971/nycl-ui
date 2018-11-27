@@ -106,7 +106,7 @@
     name: 'applicationForm',
     data () {
       return {
-        season: '2018',
+        season: '2019',
         ageGroup: '',
         saved: false,
         error: false,
@@ -145,7 +145,7 @@
 
     mounted: function () {
       var self = this
-      axios.get('http://localhost:8081/status?clubName=' + this.$store.getters.getClub).then(function (response) {
+      axios.get('status?clubName=' + this.$store.getters.getClub).then(function (response) {
         self.status = response.data
       })
     },
@@ -154,7 +154,7 @@
       saveOnSubmit: function (event) {
         if (confirm('Please confirm you wish to save this team ') === true) {
           var self = this
-          axios.post('http://localhost:8081/addteam', this.team,
+          axios.post('addteam', this.team,
             {headers: {'Content-Type': 'application/json'}}).then(function () {
               self.saved = true
             }).catch(function () {

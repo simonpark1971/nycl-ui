@@ -55,7 +55,7 @@
       doSaveClub () {
         var self = this
         if (confirm('Please confirm your cup entries') === true) {
-          axios.post('http://localhost:8081/updatecupentries', this.club,
+          axios.post('updatecupentries', this.club,
             { headers: {'Content-Type': 'application/json'} }).then(function () {
               self.cupsEntered = true
               self.submissionError = false
@@ -69,7 +69,7 @@
 
     mounted: function () {
       var self = this
-      axios.get('http://localhost:8081/getclub?clubName=' + this.$store.getters.getClub).then(function (response) {
+      axios.get('getclub?clubName=' + this.$store.getters.getClub).then(function (response) {
         self.club = response.data
       })
     }

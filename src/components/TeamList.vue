@@ -29,7 +29,7 @@
 
     mounted: function () {
       var self = this
-      axios.get('http://localhost:8081/getteams?clubName=' + this.$store.getters.getClub).then(function (response) {
+      axios.get('getteams?clubName=' + this.$store.getters.getClub).then(function (response) {
         self.teams = response.data
       })
     }

@@ -45,7 +45,7 @@
 
     mounted: function () {
       var self = this
-        this.$http.get('http://localhost:8081/getclubs').then(function (response) {
+        axios.get('getclubs').then(function (response) {
         self.clubs = response.data
       })
     },
@@ -62,14 +62,14 @@
         return fee
       },
       download () {
-        axios.get('http://localhost:8081/download/clubs', {responseType: 'arraybuffer'}).then(function (response) {
+        axios.get('download/clubs', {responseType: 'arraybuffer'}).then(function (response) {
           let blob = new Blob([response.data], { type: 'text/csv' })
           let url = window.URL.createObjectURL(blob)
           window.open(url)
         })
       },
       downloadContacts () {
-        axios.get('http://localhost:8081/download/contacts', {responseType: 'arraybuffer'}).then(function (response) {
+        axios.get('download/contacts', {responseType: 'arraybuffer'}).then(function (response) {
           let blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
           let url = window.URL.createObjectURL(blob)
           window.open(url)

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <b-navbar toggleable>
+    <b-navbar toggleable="lg" type="dark" variant="info">
 
         <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
@@ -9,7 +9,7 @@
           <span>NYCL Admin</span>
         </b-link>
 
-        <b-collapse is-nav id="nav_collapse">
+        <!--<b-collapse is-nav id="nav_collapse">-->
 
           <b-nav is-nav-bar v-if="!isLoggedIn">
             <b-nav-item><router-link v-bind:to="'/RegisterClub'">Register</router-link></b-nav-item>
@@ -67,7 +67,7 @@
             <b-nav-item><router-link v-bind:to="'/about'">About</router-link></b-nav-item>
           </b-nav>
 
-        </b-collapse>
+        <!--</b-collapse>-->
     </b-navbar>
 
     <router-view></router-view>

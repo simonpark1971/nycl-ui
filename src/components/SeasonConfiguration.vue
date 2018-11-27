@@ -72,13 +72,13 @@
         }
       },
       update: function () {
-        axios.put('http://localhost:8081/saveseason', this.currentSeason).then(function (response) {
+        axios.put('saveseason', this.currentSeason).then(function (response) {
         })
       }
     },
     mounted () {
       var self = this
-      axios.get('http://localhost:8081/getseason').then(function (response) {
+      axios.get('getseason').then(function (response) {
         self.currentSeason = response.data
       })
     }

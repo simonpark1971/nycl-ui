@@ -29,13 +29,13 @@
     },
     mounted () {
       var self = this
-      axios.get('http://localhost:8081/getfixtures?season=2018').then(function (response) {
+      axios.get('getfixtures?season=2018').then(function (response) {
         self.season = response.data
       })
     },
     methods: {
       download () {
-        axios.get('http://localhost:8081/download/fixtures', {responseType: 'arraybuffer'}).then(function (response) {
+        axios.get('download/fixtures', {responseType: 'arraybuffer'}).then(function (response) {
           let blob = new Blob([response.data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})
           let url = window.URL.createObjectURL(blob)
           window.open(url)

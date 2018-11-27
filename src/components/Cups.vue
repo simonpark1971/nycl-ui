@@ -61,7 +61,7 @@
     methods: {
       fetchData () {
         var self = this
-        axios.get('http://localhost:8081/getcupentries').then(function (response) {
+        axios.get('getcupentries').then(function (response) {
           self.cupEntries.Under11 = response.data['Under11']
           self.cupEntries.Under12 = response.data['Under12']
           self.cupEntries.Under14 = response.data['Under14']
