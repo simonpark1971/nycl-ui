@@ -2,65 +2,20 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
-import About from './components/About'
-import ApplicationForm from './components/ApplicationForm'
-import AddTeamForm from './components/AddTeamForm'
-import RegisterClub from './components/RegisterClub'
-import LoginForm from './components/Login'
-import LeagueList from './components/LeagueList'
-import TeamList from './components/TeamList'
-import Cups from './components/Cups'
-import ViewClubs from './components/ViewClubs'
-import CompleteApplication from './components/CompleteApplication'
-import SeasonConfiguration from './components/SeasonConfiguration'
-import Fixtures from './components/Fixtures'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuex from 'vuex'
 import axios from 'axios'
-import CupEntries from './components/CupEntries'
 import RingLoader from 'vue-spinner/src/RingLoader.vue'
+import router from './router'
+import i18n from './i18n'
 
 Vue.use(BootstrapVue)
-Vue.use(VueRouter)
 
 Vue.component('RingLoader', RingLoader)
 
-const routes = [
-
-  { path: '/ViewClubs', component: ViewClubs, meta: {requiresLogin: true} },
-
-  { path: '/registerClub', component: RegisterClub },
-
-  { path: '/AppForm', component: ApplicationForm, meta: {requiresLogin: true} },
-
-  { path: '/AddTeam', component: AddTeamForm, meta: {requiresLogin: true} },
-
-  { path: '/TeamList', component: TeamList, meta: {requiresLogin: true} },
-
-  { path: '/CupEntries', component: CupEntries, meta: {requiresLogin: true} },
-
-  { path: '/CompleteApplication', component: CompleteApplication, meta: {requiresLogin: true} },
-
-  { path: '/LeagueList', component: LeagueList, meta: {requiresLogin: true} },
-
-  { path: '/Cups', name: 'cups', component: Cups, meta: {requiresLogin: true} },
-
-  { path: '/Fixtures', name: 'fixtures', component: Fixtures, meta: {requiresLogin: true} },
-
-  { path: '/Configuration', name: 'config', component: SeasonConfiguration, meta: {requiresLogin: true} },
-
-  { path: '/LoginForm', component: LoginForm, name: 'login' },
-
-  { path: '/about', component: About }
-]
-
-const router = new VueRouter({
-  routes, // short for routes: routes
-  mode: 'history'
-})
+axios.defaults.baseURL = process.env.API_BASE_URL
 
 router.beforeEach((to, from, next) => {
   if (to.meta && to.meta.requiresLogin && !store.state.user.isLoggedIn) {
@@ -69,9 +24,6 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-
-axios.defaults.baseURL = process.env.API_BASE_URL
-
 
 Vue.use(Vuex)
 const store = new Vuex.Store({
@@ -106,7 +58,7 @@ const store = new Vuex.Store({
     },
 
     logout ({commit}) {
-      return axios.get('security/logout').then(function (response) {
+      return axios.get('security/logout').then(function () {
         commit('LOGOUT')
       })
     }
@@ -129,10 +81,8 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
   router,
-  template: '<App/>',
-  components: { App },
-  store: store
-
+  store: store,
+  i18n,
+  render: h => h(App)
 }).$mount('#app')
